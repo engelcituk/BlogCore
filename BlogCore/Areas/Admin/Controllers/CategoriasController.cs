@@ -41,6 +41,7 @@ namespace BlogCore.Areas.Admin.Controllers
             }
             return View(categoria);
         }
+        // busco el dato y lo envio a la vista
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -50,6 +51,19 @@ namespace BlogCore.Areas.Admin.Controllers
             {
                 return NotFound();
 
+            }
+            return View(categoria);
+        }
+        //metodo para actualizar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Categoria categoria)
+        {
+            if (ModelState.IsValid)
+            {
+                _contenedorTrabajo.Categoria.Update(categoria);
+                _contenedorTrabajo.Save();
+                return RedirectToAction(nameof(Index));
             }
             return View(categoria);
         }

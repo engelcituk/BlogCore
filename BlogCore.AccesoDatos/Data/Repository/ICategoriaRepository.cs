@@ -10,6 +10,6 @@ namespace BlogCore.AccesoDatos.Data.Repository
     {
         IEnumerable<SelectListItem> GetListaCategorias();
         
-        void update(Categoria categoria);
+        void Update(Categoria categoria);
     }
 }

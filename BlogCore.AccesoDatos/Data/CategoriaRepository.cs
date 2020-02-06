@@ -24,7 +24,7 @@ namespace BlogCore.AccesoDatos.Data
             });
         }
 
-        public void update(Categoria categoria)
+        public void Update(Categoria categoria)
         {
             var objDesdeDb = _db.Categoria.FirstOrDefault(s => s.id == categoria.id);
             objDesdeDb.nombre = categoria.nombre;
