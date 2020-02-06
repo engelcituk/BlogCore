@@ -1,6 +1,6 @@
 ﻿let datatable;
 
-$(document).ready(() => {
+$(document).ready( ()=> {
     cargarDatatable();
 });
 
@@ -11,16 +11,16 @@ function cargarDatatable() {
             "type": "GET",
             "datatype":"json"
         },
-        "colums": [
+        "columns": [
             { "data": "id", "width": "5%" },
             { "data": "nombre", "width": "50%" },
             { "data": "orden", "width": "20%" },
             {
                 "data": "id",
-                "render": function (data) {
+                "render": (data) => {
                     return `<div class="text-center">
-                                <a href='/Admin/Categorias/Edit/${data}' class='btn btn-success text-white' style='cursor:pointer; width:100px;'><i class='fas fa-edit'><i>Editar</a>&nbsp
-                                <button onclick='Delete("/Admin/Categorias/Delete/${data}")'  class='btn btn-danger text-white' style='cursor:pointer; width:100px;'><i class='fas fa-edit'><i>Borrar</button>
+                                <a href='/Admin/Categorias/Edit/${data}' class='btn btn-success text-white' style='cursor:pointer; width:100px;'>Editar</a>&nbsp
+                                <button onclick=Delete("/Admin/Categorias/Delete/${data}")  class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>Borrar</button>
                             </idv>`;
                 },"width": "30%"
             }
