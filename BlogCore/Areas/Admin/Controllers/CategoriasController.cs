@@ -41,7 +41,18 @@ namespace BlogCore.Areas.Admin.Controllers
             }
             return View(categoria);
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Categoria categoria = new Categoria();
+            categoria = _contenedorTrabajo.Categoria.Get(id);
+            if (categoria == null)
+            {
+                return NotFound();
 
+            }
+            return View(categoria);
+        }
         #region llamadas a la api
         [HttpGet]
         public IActionResult GetAll()
