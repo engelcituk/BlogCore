@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogCore.AccesoDatos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200206223923_CreacionEntidadArticulo")]
+    [Migration("20200206224334_CreacionEntidadArticulo")]
     partial class CreacionEntidadArticulo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
