@@ -19,8 +19,8 @@ function cargarDatatable() {
                 "data": "id",
                 "render": (data) => {
                     return `<div class="text-center">
-                                <a href='/Admin/Categorias/Edit/${data}' class='btn btn-success text-white' style='cursor:pointer; width:100px;'>Editar</a>&nbsp
-                                <button onclick=Delete("/Admin/Categorias/Delete/${data}")  class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>Borrar</button>
+                                <a href='/Admin/Categorias/Edit/${data}' class='btn btn-success text-white' style='cursor:pointer; '> <i class='fas fa-edit'></i></a>&nbsp
+                                <button onclick=Delete("/Admin/Categorias/Delete/${data}")  class='btn  btn-danger text-white' style='cursor:pointer; '><i class='fas fa-trash'></i></button>
                             </idv>`;
                 },"width": "30%"
             }

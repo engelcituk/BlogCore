@@ -67,11 +67,25 @@ namespace BlogCore.Areas.Admin.Controllers
             }
             return View(categoria);
         }
+
         #region llamadas a la api
         [HttpGet]
         public IActionResult GetAll()
         {
             return Json( new { data = _contenedorTrabajo.Categoria.GetAll() });
+        }
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var objFromDb = _contenedorTrabajo.Categoria.Get(id);
+
+            if (objFromDb == null)
+            {
+                return Json(new { success = false, message= "Error al borrar la categoría"});
+            }
+            _contenedorTrabajo.Categoria.Remove(objFromDb);
+            _contenedorTrabajo.Save();
+            return Json(new { success = true, message = "La categoría se ha borrado de manera exitosa" });
         }
         #endregion
     }
