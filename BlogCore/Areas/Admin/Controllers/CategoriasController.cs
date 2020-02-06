@@ -16,10 +16,19 @@ namespace BlogCore.Areas.Admin.Controllers
         {
             _contenedorTrabajo = contenedorTrabajo;
         }
+        
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         #region llamadas a la api
         [HttpGet]
         public IActionResult GetAll()

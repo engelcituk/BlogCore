@@ -26,7 +26,7 @@ function cargarDatatable() {
             }
         ],
         "language": {
-            "emptyTable":"No hay registros"
+            "emptyTable": "No hay registros" 
         },
         "width":"100%"
     });

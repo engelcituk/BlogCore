@@ -1,0 +1,39 @@
+﻿@model BlogCore.Models.Categoria
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Crear una nueva categoría</h3>
+<form method="post" asp-action="Create">
+    <div class="row px-2 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>        
+        <div class="col-10 offset-1 mt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="nombre" class="form-control" />
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="orden"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="orden" class="form-control" />
+                    <span asp-validation-for="orden" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">                
+                <div class="col-8 offset-4">
+                   <partial name="_VistaCrearVolver"/> 
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
