@@ -1,13 +1,14 @@
 ﻿@model BlogCore.Models.ViewModels.ArticuloVM
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Editar artículo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br />
 <br />
 <h3 class="text-center">Editar artículo</h3>
-<form method="post" asp-action="Create" enctype="multipart/form-data">
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Articulo.id" />
     <div class="row px-2 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-8 mt-4">

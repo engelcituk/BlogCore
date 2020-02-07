@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace BlogCore.Areas.Admin.Controllers
 {
@@ -50,7 +51,7 @@ namespace BlogCore.Areas.Admin.Controllers
                 var archivos = HttpContext.Request.Form.Files;
                 if (articuloVM.Articulo.id==0)
                 {
-                    //Nuevo articulo
+                    //procesamiento de la imagen y datos del articulo
                     string nombreArchivo = Guid.NewGuid().ToString();
                     var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
                     var extension = Path.GetExtension(archivos[0].FileName);
@@ -88,6 +89,59 @@ namespace BlogCore.Areas.Admin.Controllers
                 articuloViewModel.Articulo = _contenedorTrabajo.Articulo.Get(id.GetValueOrDefault());
             }
             return View(articuloViewModel);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ArticuloVM articuloVM)
+        {
+            if (ModelState.IsValid)
+            {
+                string rutaPrincipal = _hostingEnviroment.WebRootPath;
+                var archivos = HttpContext.Request.Form.Files;
+
+                var articuloDesdeDb = _contenedorTrabajo.Articulo.Get(articuloVM.Articulo.id);
+
+                if (archivos.Count() > 0)
+                {
+                    //Editamos imagen
+                    string nombreArchivo = Guid.NewGuid().ToString();
+                    var subidas = Path.Combine(rutaPrincipal, @"imagenes\articulos");
+                    var extension = Path.GetExtension(archivos[0].FileName);
+                    var nuevaExtension = Path.GetExtension(archivos[0].FileName);
+
+                    var rutaImagen = Path.Combine(rutaPrincipal, articuloDesdeDb.url_imagen.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(rutaImagen))
+                    {
+                        System.IO.File.Delete(rutaImagen);
+                    }
+
+                    //subimos nuevamente el archivo
+                    using (var fileStreams = new FileStream(Path.Combine(subidas, nombreArchivo + nuevaExtension), FileMode.Create))
+                    {
+                        archivos[0].CopyTo(fileStreams);
+                    }
+
+                    articuloVM.Articulo.url_imagen = @"\imagenes\articulos\" + nombreArchivo + extension;
+                    articuloVM.Articulo.fecha_creacion = DateTime.Now.ToString();
+
+                    _contenedorTrabajo.Articulo.Update(articuloVM.Articulo);
+                    _contenedorTrabajo.Save();
+
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    //aqui cuando la imagen ya existe y no se reemplaz, se conserva la existente en la bd
+                    articuloVM.Articulo.url_imagen = articuloDesdeDb.url_imagen;
+                }
+                _contenedorTrabajo.Articulo.Update(articuloVM.Articulo);
+                _contenedorTrabajo.Save();
+                return RedirectToAction(nameof(Index));
+
+            }
+            return View(articuloVM);
 
         }
         #region llamadas a la api
