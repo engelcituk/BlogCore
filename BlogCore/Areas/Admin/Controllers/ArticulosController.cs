@@ -60,7 +60,7 @@ namespace BlogCore.Areas.Admin.Controllers
                         archivos[0].CopyTo(fileStreams);
                     }
 
-                    articuloVM.Articulo.url_imagen = @"\imagenes\articulos" + nombreArchivo + extension;
+                    articuloVM.Articulo.url_imagen = @"\imagenes\articulos\" + nombreArchivo + extension;
                     articuloVM.Articulo.fecha_creacion = DateTime.Now.ToString();
 
                     _contenedorTrabajo.Articulo.Add(articuloVM.Articulo);
@@ -72,6 +72,23 @@ namespace BlogCore.Areas.Admin.Controllers
             }
             return View();
             
+        }
+        // busco el dato y lo envio a la vista
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            ArticuloVM articuloViewModel = new ArticuloVM()
+            {
+                Articulo = new Models.Articulo(),
+                ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias()
+            };
+
+            if (id != null)
+            {
+                articuloViewModel.Articulo = _contenedorTrabajo.Articulo.Get(id.GetValueOrDefault());
+            }
+            return View(articuloViewModel);
+
         }
         #region llamadas a la api
         [HttpGet]
