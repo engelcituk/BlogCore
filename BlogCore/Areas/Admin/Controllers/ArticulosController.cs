@@ -14,16 +14,24 @@ namespace BlogCore.Areas.Admin.Controllers
         {
             _contenedorTrabajo = contenedorTrabajo;
         }
+        
+        [HttpGet]
         public IActionResult Index()
         {
-            ArticuloVM articuloVm = new ArticuloVM()
+           return View();
+        }
+
+        [HttpGet]        
+        public IActionResult Create()
+        {
+            ArticuloVM articuloViewModel = new ArticuloVM()
             {
                 Articulo = new Models.Articulo(),
                 ListaCategorias = _contenedorTrabajo.Categoria.GetListaCategorias()
             };
-            return View(articuloVm);
-        }
 
+            return View(articuloViewModel);
+        }
         #region llamadas a la api
         [HttpGet]
         public IActionResult GetAll()
