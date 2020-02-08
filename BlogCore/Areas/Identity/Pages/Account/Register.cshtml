@@ -48,12 +48,17 @@
                 <input asp-for="Input.direccion" class="form-control" />
                 <span asp-validation-for="Input.direccion" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
 
             <div class="form-group row">
                 <div class="col-5">
-                    <input type="radio" name="radUsuarioRole" value="@CNT.Admin"  />@CNT.Admin
-                    <input type="radio" name="radUsuarioRole" value="@CNT.Usuario"  />@CNT.Usuario
-                </div>               
+                    <input type="radio" name="radUsuarioRole" value="@CNT.Admin" />@CNT.Admin
+                    <input type="radio" name="radUsuarioRole" value="@CNT.Usuario" />@CNT.Usuario
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Registrarse</button>
