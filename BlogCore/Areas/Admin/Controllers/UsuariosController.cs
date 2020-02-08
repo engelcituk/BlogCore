@@ -25,5 +25,23 @@ namespace BlogCore.Areas.Admin.Controllers
 
             return View(_contenedorTrabajo.Usuario.GetAll(u => u.Id != usuarioActual.Value));
         }
+        public IActionResult Bloquear(string id)
+        {
+            if (id ==null)
+            {
+                return NotFound();
+            }
+            _contenedorTrabajo.Usuario.BloquearUsuario(id);
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Desbloquear(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            _contenedorTrabajo.Usuario.DesbloquearUsuario(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
