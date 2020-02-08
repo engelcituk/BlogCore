@@ -32,6 +32,13 @@ namespace BlogCore.Controllers
             return View(homeViewModel);
 
         }
-                
+        public IActionResult DetailsArticulo(int id)
+        {
+            var articuloDesdeDB = _contenedorTrabajo.Articulo.GetFirstOrDefault(a => a.id == id);
+
+            return View(articuloDesdeDB);
+
+        }
+
     }
 }
