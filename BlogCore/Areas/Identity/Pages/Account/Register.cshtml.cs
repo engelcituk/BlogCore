@@ -57,9 +57,21 @@ namespace BlogCore.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar password")]
+            [Compare("Password", ErrorMessage = "La contraseña y la confirmación no coinciden")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Nombre completo")]
+            public string nombre { get; set; }
+            [Display(Name = "País")]
+            public string pais { get; set; }
+            [Display(Name = "Ciudad")]
+            public string ciudad { get; set; }
+            [Display(Name = "Dirección")]
+            public string direccion { get; set; }
+            [Display(Name = "Número de télefono")]
+            public string PhoneNumber { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)

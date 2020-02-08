@@ -17,7 +17,7 @@ namespace BlogCore.Models
         [Required(ErrorMessage = "La ciudad es obligatorio")]
         public string ciudad { get; set; }
         
-        public string dirección { get; set; }
+        public string direccion { get; set; }
 
     }
 }

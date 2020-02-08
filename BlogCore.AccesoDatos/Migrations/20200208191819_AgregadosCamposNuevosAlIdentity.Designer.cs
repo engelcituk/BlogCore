@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogCore.AccesoDatos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200208180120_AgregadosCamposNuevosAlIdentity")]
+    [Migration("20200208191819_AgregadosCamposNuevosAlIdentity")]
     partial class AgregadosCamposNuevosAlIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -307,7 +307,7 @@ namespace BlogCore.AccesoDatos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("dirección")
+                    b.Property<string>("direccion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombre")

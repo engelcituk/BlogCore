@@ -305,7 +305,7 @@ namespace BlogCore.AccesoDatos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("dirección")
+                    b.Property<string>("direccion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombre")
