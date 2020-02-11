@@ -16,6 +16,7 @@ using BlogCore.AccesoDatos.Data.Repository;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using BlogCore.Utilidades;
 using BlogCore.Models;
+using BlogCore.AccesoDatos.Data.Inicializador;
 
 namespace BlogCore
 {
@@ -41,12 +42,13 @@ namespace BlogCore
             services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddScoped<IContenedorTrabajo, ContenedorTrabajo>();
+            services.AddScoped<IInicializadorDB, InicializadorDB>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IInicializadorDB dbInicial)
         {
             if (env.IsDevelopment())
             {
@@ -63,6 +65,8 @@ namespace BlogCore
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            dbInicial.Inicializar();
 
             app.UseAuthentication();
             app.UseAuthorization();
